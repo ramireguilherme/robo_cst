@@ -5,7 +5,6 @@
 import br.unicamp.cst.core.entities.Memory;
 
 import java.util.List;
-
 /**
  * @author andre
  *
