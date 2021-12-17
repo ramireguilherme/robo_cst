@@ -25,14 +25,18 @@ public class AgentMind extends Mind {
         atuadorMO = createMemoryObject("ATUADOR");
         sensorMO = createMemoryObject("SENSOR");
         URI uri = new URI("http://127.0.0.1:11311");
-        MotorCodelet motorCodelet = new MotorCodelet("MOTOR","\"/cmd_vel geometry_msgs/Twist\"","127.0.0.1","127.0.0.1" , uri);
-        Message message = new Message() {
-        };
+        //MotorCodelet motorCodelet = new MotorCodelet("MOTOR","\"/cmd_vel geometry_msgs/Twist\"","127.0.0.1","127.0.0.1" , uri);
+        //comentei apenas pra testar com o motor codelet dummy
+        DummyMotor motorCodelet = new DummyMotor();
+        motorCodelet.addInput(atuadorMO);
 
 
+        DummyBehavior behavior = new DummyBehavior();
+        behavior.addOutput(atuadorMO);
 
-        atuadorMO.setI();
-        motorCodelet.fillMessageToBePublished(atuadorMO, (Twist) message);
+        this.insertCodelet(motorCodelet);
+        this.insertCodelet(behavior);
+
         //Codelet codelet = new Sensor("sensor", "/cmd_vel geometry_msgs/Twist", "std_msgs.String", "127.0.0.1", "http://127.0.0.1:11311");
         start();
     }

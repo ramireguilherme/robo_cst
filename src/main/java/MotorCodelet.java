@@ -26,6 +26,8 @@ public class MotorCodelet extends MotorTopicPublisher<Twist> {
 
             message.setLinear(linear);
             message.setAngular(angular);
+
+            System.out.println("hereee");
         }
 
     }
