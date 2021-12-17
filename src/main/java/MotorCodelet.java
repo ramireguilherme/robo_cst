@@ -1,6 +1,5 @@
 import br.unicamp.cst.core.entities.Memory;
 import geometry_msgs.*;
-
 import java.net.URI;
 import java.util.List;
 
