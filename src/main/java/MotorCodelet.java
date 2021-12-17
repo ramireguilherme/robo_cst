@@ -1,10 +1,5 @@
-import br.unicamp.cst.core.entities.Codelet;
 import br.unicamp.cst.core.entities.Memory;
-import geometry_msgs.Point;
-import geometry_msgs.Pose;
-import geometry_msgs.Quaternion;
-import geometry_msgs.Twist;
-import std_msgs.Header;
+import geometry_msgs.*;
 
 import java.net.URI;
 import java.util.List;
@@ -16,35 +11,25 @@ public class MotorCodelet extends MotorTopicPublisher<Twist> {
 
     @Override
     public void fillMessageToBePublished(Memory motorMemory, Twist message) {
-
         List<Float> parameters = (List<Float>) motorMemory.getI();
-        //do the magic
+//do the magic
         if(parameters != null){
-            /*Header header = message.getHeader();
-            header.setFrameId("map");
+            Vector3 linear = message.getLinear();
+            Vector3 angular = message.getAngular();
 
-            Pose pose = message.getPose();
+            linear.setX(parameters.get(0));
+            linear.setY(0);
+            linear.setZ(0);
 
-            Point point = pose.getPosition();
-            Quaternion quaternion = pose.getOrientation();
+            angular.setX(0);
+            angular.setY(0);
+            angular.setZ(parameters.get(1));
 
-            point.setX(parameters.get(0));
-            point.setY(parameters.get(1));
-            point.setZ(parameters.get(2));
-
-            pose.setPosition(point);
-            pose.setOrientation(quaternion);
-
-            message.setPose(pose);
-            message.setHeader(header);*/
-
-            //message.setPoseStamped(poseStamped);
-
-            System.out.println("goal to be printed: " + message.toString());
-
-//message.setGoal(goal);
+            message.setLinear(linear);
+            message.setAngular(angular);
         }
 
-
     }
+
+
 }
